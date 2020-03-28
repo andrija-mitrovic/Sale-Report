@@ -1,0 +1,62 @@
+﻿@model ProductListPagination<WholesaleIndexViewModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h3>Wholesale report</h3>
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Sifra Robe</th>
+            <th scope="col" style="width:130px">Naziv Robe</th>
+            <th scope="col">Kolicina</th>
+            <th scope="col">Nabavna Vr.</th>
+            <th scope="col">Nabavna Cij.</th>
+            <th scope="col">VP Cijena</th>
+            <th scope="col">VP Vrijed.</th>
+            <th scope="col">Ukalk. RUC</th>
+            <th scope="col">Kolicina</th>
+            <th scope="col">Nabavna Vr.</th>
+            <th scope="col">VP Cijena</th>
+            <th scope="col">VP Vrijed.</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.sifra</td>
+                <td>@item.naziv</td>
+                <td>@item.ukoli</td>
+                <td>@item.unavr</td>
+                <td>@item.unacj</td>
+                <td>@item.uprcj</td>
+                <td>@item.uprvr</td>
+                <td>@item.urucn</td>
+                <td>@item.ikoli</td>
+                <td>@item.inavr</td>
+                <td>@item.iprcj</td>
+                <td>@item.iprvr</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@{
+    var disablePrevious = !Model.IsPreviousPageAvailable ? "disabled" : "";
+    var disableNext = !Model.IsNextPageAvailable ? "disabled" : "";
+}
+
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex-1)"
+   class="btn btn-info @disablePrevious">
+    Previous
+</a>
+<a asp-action="Index"
+   asp-route-pageNumber="@(Model.PageIndex+1)"
+   class="btn btn-info @disableNext">
+    Next
+</a>
+
